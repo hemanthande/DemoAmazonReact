@@ -5,38 +5,43 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import NavBar from './components/NavBar'
 import BookList from './components/BookList'
 import LoginForm from './components/LoginForm'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-
+  
   const [fullName, setFullName] = useState("");
-  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     const fullName = localStorage.getItem('fullName');
-    const userRole = localStorage.getItem('userRole');
     if(fullName){
       setFullName(fullName);
     }
-    if(userRole){
-      setUserRole(userRole);
-    }
   }, []);
-  
+
+  function showToast(message, type){
+    toast(message, {
+      type: type,
+      position: 'bottom-right'
+    });
+  }
+
   return (
     <>
     <div className='container d-flex flex-column min-vh-100'>
       <header>
-        <NavBar fullName =  {fullName } />
+        <NavBar fullName={fullName} setFullName={setFullName}  />
       </header>
       <main className='flex-grow-1'>
+        <ToastContainer />
         <Routes>
-          <Route path='/' element={<BookList />} />
-          <Route path='/login' element={<LoginForm setFullName={setFullName} />} />
+          <Route path='/' element={<BookList showToast={showToast} />} />
+          <Route path='/login' element={<LoginForm setFullName={setFullName}/>} />
           <Route path='/contact' element={<h1>Contact</h1>} />
         </Routes>
       </main>
       <footer>
-        <h5>This is my footer</h5>
+        <h6>This is my footer</h6>
       </footer>
      </div>
     </>
