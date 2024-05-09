@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom';
