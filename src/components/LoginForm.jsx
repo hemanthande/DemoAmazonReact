@@ -3,7 +3,7 @@ import {useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
-export default function LoginForm({setFullName}){
+export default function LoginForm({setFullName, setUserRole}){
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [error, setError] = useState('');
@@ -33,6 +33,7 @@ export default function LoginForm({setFullName}){
         }).then(response => {
             console.log(response.data);
             localStorage.setItem('fullName',response.data.name);
+            setUserRole(response.data.role);
             setFullName(response.data.name);
             navigate('/');
          

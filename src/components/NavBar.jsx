@@ -16,41 +16,51 @@ export default function NavBar({fullName, setFullName}){
         }).catch(error => console.log(error));
 
     }
-    return(
-    <nav>
-          <ul className='nav nav-tabs'>
-            <li className='nav-item'>
-              <NavLink to='/' className='nav-link'>
-                Home
-              </NavLink>
-            </li>
-            {!fullName &&
-              <li className='nav-item'>
-                <NavLink to='/login' className='nav-link'>
+    return (
+      <nav>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <NavLink to="/" className="nav-link">
+              Home
+            </NavLink>
+          </li>
+          {!fullName && (
+            <>
+              <li className="nav-item">
+                <NavLink to="/login" className="nav-link">
                   Login
                 </NavLink>
               </li>
-            }
-            <li className='nav-item'>
-              <NavLink to='/contact' className='nav-link'>
-                Contact
-              </NavLink>
-            </li>
-            {fullName && 
-              <div className='nav-item-group'>
-                <li className='nav-item'>
-                    <NavLink to='/profile' className='nav-link'>
-                      {fullName}
-                    </NavLink>
-                </li>
-                <li className='nav-item'>
-                    <button className='nav-link' onClick={(evt) => onClickLogout(evt)}>
-                      Logout
-                    </button>
-                </li>
-              </div>
-            }
-          </ul>
-        </nav>
+              <li className="nav-item">
+                <NavLink to="/register" className="nav-link">
+                  Register
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li className="nav-item">
+            <NavLink to="/contact" className="nav-link">
+              Contact
+            </NavLink>
+          </li>
+          {fullName && (
+            <div className="nav-item-group">
+              <li className="nav-item">
+                <NavLink to="/profile" className="nav-link">
+                  {fullName}
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <button
+                  className="nav-link"
+                  onClick={(evt) => onClickLogout(evt)}
+                >
+                  Logout
+                </button>
+              </li>
+            </div>
+          )}
+        </ul>
+      </nav>
     );
 }
